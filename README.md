@@ -54,9 +54,16 @@ Here is a number of examples of addresses and how their splitted representation 
 
 
 ## Unit Tests
+
 The examples above and even more exemplary address lines are part of our unit tests. The unit tests can be run on the following site:
 
 [https://regex101.com/r/vO5fY7/1](https://regex101.com/r/vO5fY7/1)
+
+You can also run the tests via [PHPUnit](https://phpunit.de/) from the command line:
+
+```
+$ phpunit tests/AddressSplittingServiceTest.php
+```
 
 ## Further Information
 The need for this functionality came up when we noticed that Shopware 5 does not contain individual fields for the street name
