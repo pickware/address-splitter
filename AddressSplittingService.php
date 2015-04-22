@@ -44,12 +44,12 @@ class AddressSplittingService {
 		} else if ($result === false) {
 			throw new AddressSplittingException('Error occured while trying to split address \'' . $address . '\'');
 		}
-		if(!empty($matches['A_Street_name'])) {
+		if(!empty($matches['A_Street_name_1'])) {
 			return array(
 				'additionToAddress1' => $matches['A_Addition_to_address_1'],
-				'streetName' => $matches['A_Street_name'],
-				'houseNumber' => $matches['A_House_number'],
-				'additionToAddress2' => $matches['A_Addition_to_address_2']
+				'streetName' => $matches['A_Street_name_1'],
+				'houseNumber' => $matches['A_House_number_1'],
+				'additionToAddress2' => (isset($matches['A_Addition_to_address_2'])) ? $matches['A_Addition_to_address_2'] : ''
 			);
 		}
 		else {
@@ -57,7 +57,7 @@ class AddressSplittingService {
 				'additionToAddress1' => $matches['B_Addition_to_address_1'],
 				'streetName' => $matches['B_Street_name'],
 				'houseNumber' => $matches['B_House_number'],
-				'additionToAddress2' => $matches['B_Addition_to_address_2']
+				'additionToAddress2' => isset($matches['B_Addition_to_address_2']) ? $matches['B_Addition_to_address_2'] : ''
 			);
 		}
 	}
