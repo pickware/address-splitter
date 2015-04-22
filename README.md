@@ -11,7 +11,7 @@ contain information given in front of or after the street name & house number, r
 ## Example
 You can use the address splitting service as follows:
 
-	var_dump(AddressSplittingService::splitAddress('Pallaswiesenstr. 57 App. 235'));
+	var_dump(\VIISON\AddressSplitter\AddressSplitter::splitAddress('Pallaswiesenstr. 57 App. 235'));
 
 The output of this command will be:
 
@@ -62,7 +62,7 @@ The examples above and even more exemplary address lines are part of our unit te
 You can also run the tests via [PHPUnit](https://phpunit.de/) from the command line:
 
 ```
-$ phpunit tests/AddressSplittingServiceTest.php
+$ phpunit
 ```
 
 ## Further Information
