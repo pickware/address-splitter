@@ -65,3 +65,6 @@ because the DHL API expects them to be passed individually.
 
 More background information on how this implementation came together can be found in our [blog post](http://blog.viison.com/post/115849166487/shopware-5-from-a-technical-point-of-view#address-splitting).
 
+# Adresstrennung
+Dieses Projekt ermöglicht es, eine Adresszeile in Straßennamen und Hausnummer sowie weitere Angaben wie z.B. Gebäude- oder Appartmentinformationen zu trennen. Unterstützt werden eine Vielzahl an Adressformaten,
+wie sie weltweit verwendet werden. So ist es z.B. unerheblich, ob die Hausnummer auf die Straße folgt oder ihr voran steht.
