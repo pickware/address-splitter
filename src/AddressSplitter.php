@@ -24,9 +24,9 @@ class AddressSplitter
                #########################################################################
                (?:(?P<A_Addition_to_address_1>.*?),\s*)? # Addition to address 1
            (?:No\.\s*)?
-               (?P<A_House_number_1>\pN+[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # House number
+               (?P<A_House_number>\pN+[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # House number
            \s*,?\s*
-               (?P<A_Street_name_1>(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?<!\s)) # Street name
+               (?P<A_Street_name>(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?<!\s)) # Street name
            \s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
                (?P<A_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
            |   #########################################################################
@@ -50,11 +50,11 @@ class AddressSplitter
             throw new \RuntimeException(sprintf('Error occurred while trying to split address \'%s\'', $address));
         }
 
-        if (!empty($matches['A_Street_name_1'])) {
+        if (!empty($matches['A_Street_name'])) {
             return array(
                 'additionToAddress1' => $matches['A_Addition_to_address_1'],
-                'streetName' => $matches['A_Street_name_1'],
-                'houseNumber' => $matches['A_House_number_1'],
+                'streetName' => $matches['A_Street_name'],
+                'houseNumber' => $matches['A_House_number'],
                 'additionToAddress2' => (isset($matches['A_Addition_to_address_2'])) ? $matches['A_Addition_to_address_2'] : ''
             );
         } else {
