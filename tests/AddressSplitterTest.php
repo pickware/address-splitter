@@ -4,16 +4,16 @@ use VIISON\AddressSplitter\AddressSplitter;
 class AddressSplitterTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider addressProvider
+     * @dataProvider validAddressesProvider
      * @param string $address
      * @param array  $expected
      */
-    public function test($address, $expected)
+    public function testValidAddresses($address, $expected)
     {
         $this->assertSame($expected, AddressSplitter::splitAddress($address));
     }
 
-    public function addressProvider()
+    public function validAddressesProvider()
     {
         return array(
             array(
@@ -84,4 +84,25 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    /**
+     * @dataProvider invalidAddressesProvider
+     * @expectedException InvalidArgumentException
+     * @param string $address
+     * @param array  $expected
+     */
+    public function testInvalidAddress($address)
+    {
+        AddressSplitter::splitAddress($address);
+    }
+
+    public function invalidAddressesProvider()
+    {
+        return array(
+            array('House number missing'),
+            array('123'),
+            array('#101')
+        );
+    }
+    
 }
