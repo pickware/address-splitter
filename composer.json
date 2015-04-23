@@ -1,0 +1,14 @@
+{
+    "name": "viison/address-splitter",
+    "description": "Tries to split an address line into street name, house number and other additional information like building, apartment information etc.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "VIISON GmbH",
+            "email": "contact@viison.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "VIISON\\AddressSplitter\\": "src/" }
+    }
+}

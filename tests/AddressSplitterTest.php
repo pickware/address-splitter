@@ -1,8 +1,7 @@
 <?php
+use VIISON\AddressSplitter\AddressSplitter;
 
-require __DIR__.'/../AddressSplittingService.php';
-
-class AddressSplittingServiceTest extends PHPUnit_Framework_TestCase
+class AddressSplitterTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider addressProvider
@@ -11,7 +10,7 @@ class AddressSplittingServiceTest extends PHPUnit_Framework_TestCase
      */
     public function test($address, $expected)
     {
-        $this->assertSame($expected, AddressSplittingService::splitAddress($address));
+        $this->assertSame($expected, AddressSplitter::splitAddress($address));
     }
 
     public function addressProvider()
