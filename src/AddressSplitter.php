@@ -5,8 +5,8 @@ namespace VIISON\AddressSplitter;
 class AddressSplitter
 {
     /**
-     * This function splits an address line like for example ''Pallaswiesenstr. 45 App 231" into its individual parts.
-     * Supported parts are additionToAddress1, streetName, houseNumber and additionToAddress2. AdditionToAdress1
+     * This function splits an address line like for example "Pallaswiesenstr. 45 App 231" into its individual parts.
+     * Supported parts are additionToAddress1, streetName, houseNumber and additionToAddress2. AdditionToAddress1
      * and additionToAddress2 contain additional information that is given at the start and the end of the string, respectively.
      * Unit tests for testing the regular expression that this function uses exist over at https://regex101.com/r/vO5fY7/1.
      * More information on this functionality can be found at http://blog.viison.com/post/115849166487/shopware-5-from-a-technical-point-of-view#address-splitting.
