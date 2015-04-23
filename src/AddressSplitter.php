@@ -45,9 +45,9 @@ class AddressSplitter
 
         $result = preg_match($regex, $address, $matches);
         if ($result === 0) {
-            throw new \InvalidArgumentException(sprintf('Address % could not be splitted into street name and house number', $address));
+            throw new \InvalidArgumentException(sprintf('Address \'%s\' could not be splitted into street name and house number', $address));
         } elseif ($result === false) {
-            throw new \RuntimeException(sprintf('Error occured while trying to split address %s', $address));
+            throw new \RuntimeException(sprintf('Error occurred while trying to split address \'%s\'', $address));
         }
 
         if (!empty($matches['A_Street_name_1'])) {
