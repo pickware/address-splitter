@@ -1,6 +1,17 @@
 # AddressSplitting
+
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 Tries to split an address line into street name, house number and other additional information like building,
 apartment information etc.
+
+## Installation
+
+This project can be installed via [Composer](https://getcomposer.org/):
+
+``` bash
+$ composer require viison/address-splitter
+```
 
 ## Usage
 The AddressSplittingService only contains one static function `splitAddress` that performs the address splitting.
@@ -11,20 +22,24 @@ contain information given in front of or after the street name & house number, r
 ## Example
 You can use the address splitting service as follows:
 
-	var_dump(\VIISON\AddressSplitter\AddressSplitter::splitAddress('Pallaswiesenstr. 57 App. 235'));
+```php
+var_dump(\VIISON\AddressSplitter\AddressSplitter::splitAddress('Pallaswiesenstr. 57 App. 235'));
+```
 
 The output of this command will be:
 
-	array(4) {
-		["additionToAddress1"]=>
-		string(0) ""
-		["streetName"]=>
-		string(16) "Pallaswiesenstr."
-		["houseNumber"]=>
-		string(2) "57"
-		["additionToAddress2"]=>
-		string(8) "App. 235"
-	}
+```php
+array(4) {
+	["additionToAddress1"]=>
+	string(0) ""
+	["streetName"]=>
+	string(16) "Pallaswiesenstr."
+	["houseNumber"]=>
+	string(2) "57"
+	["additionToAddress2"]=>
+	string(8) "App. 235"
+}
+```
 
 ## Supported Address Formats
 We try to support all address formats used world-wide. E.g., the address splitter will work no matter if the house number
@@ -55,9 +70,8 @@ Here is a number of examples of addresses and how their splitted representation 
 
 ## Unit Tests
 
-The examples above and even more exemplary address lines are part of our unit tests. The unit tests can be run on the following site:
+The examples above and even more exemplary address lines are part of our unit tests. The unit tests can be run on the following site: [https://regex101.com/r/vO5fY7/1](https://regex101.com/r/vO5fY7/1)
 
-[https://regex101.com/r/vO5fY7/1](https://regex101.com/r/vO5fY7/1)
 
 You can also run the tests via [PHPUnit](https://phpunit.de/) from the command line:
 
@@ -66,7 +80,7 @@ $ phpunit
 ```
 
 ## Further Information
-The need for this functionality came up when we noticed that Shopware 5 does not contain individual fields for the street name
+The need for this functionality came up when we noticed that [Shopware 5](https://github.com/shopware/shopware) does not contain individual fields for the street name
 and the house number anymore. Nevertheless, we needed to have these separated for our [DHL Adapter](http://store.shopware.com/viison00656/dhl-adapter.html),
 because the DHL API expects them to be passed individually.
 
@@ -75,3 +89,9 @@ More background information on how this implementation came together can be foun
 # Adresstrennung
 Dieses Projekt ermöglicht es, eine Adresszeile in Straßennamen und Hausnummer sowie weitere Angaben wie z.B. Gebäude- oder Appartmentinformationen zu trennen. Unterstützt werden eine Vielzahl an Adressformaten,
 wie sie weltweit verwendet werden. So ist es z.B. unerheblich, ob die Hausnummer auf die Straße folgt oder ihr voran steht.
+
+## License ##
+
+**viison/address-splitter** is licensed under the MIT license.  See the `LICENSE` file for more details.
+
+
