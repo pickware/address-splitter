@@ -35,7 +35,7 @@ class AddressSplitter
                #########################################################################
                (?:(?P<B_Addition_to_address_1>.*?),\s*(?=.*[,\/]))? # Addition to address 1
                (?!\s*No\.)(?P<B_Street_name>\S\s*\S(?:[^,#](?!\b\pN+\s))*?(?<!\s)) # Street name
-           \s*[\/,]?\s*(?:\sNo\.)?\s+
+           \s*[\/,]?\s*(?:\sNo\.)?\s*(?:(?<=\.)|\s)
                (?P<B_House_number>\pN+\s*-?[a-zA-Z]?(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|
                [IVXLCDM]+(?!.*\b\pN+\b))(?<!\s) # House number
            \s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
