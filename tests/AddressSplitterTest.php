@@ -100,6 +100,15 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
                     'additionToAddress2' => ""
                 )
             ),
+            array(
+                "Tür 18",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Tür",
+                    'houseNumber'        => "18",
+                    'additionToAddress2' => ""
+                )
+            ),
         );
     }
 

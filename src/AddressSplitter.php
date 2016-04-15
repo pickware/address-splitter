@@ -41,7 +41,7 @@ class AddressSplitter
            \s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
                (?P<B_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
            )
-           \s*\Z/x';
+           \s*\Z/xu';
 
         $result = preg_match($regex, $address, $matches);
         if ($result === 0) {
