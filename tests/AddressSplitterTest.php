@@ -23,7 +23,6 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
                     'streetName'         => 'route de Genève',
                     'houseNumber'        => '56',
                     'additionToAddress2' => ''
-
                 )
             ),
             array(
@@ -33,7 +32,6 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
                     'streetName'         => "Piazza dell'Indipendenza",
                     'houseNumber'        => '14',
                     'additionToAddress2' => ''
-
                 )
             ),
             array(
@@ -65,6 +63,33 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                "3940 Radio Road, Unit 110",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Radio Road",
+                    'houseNumber'        => "3940",
+                    'additionToAddress2' => "Unit 110"
+                )
+            ),
+            array(
+                "D 6, 2",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "D 6",
+                    'houseNumber'        => "2",
+                    'additionToAddress2' => ""
+                )
+            ),
+            array(
+                "13 2ème Avenue",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "2ème Avenue",
+                    'houseNumber'        => "13",
+                    'additionToAddress2' => ""
+                )
+            ),
+            array(
                 "Apenrader Str. 16 / Whg. 3",
                 array(
                     'additionToAddress1' => "",
@@ -74,12 +99,75 @@ class AddressSplitterTest extends PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                "Pallaswiesenstr. 57 App. 235",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Pallaswiesenstr.",
+                    'houseNumber'        => "57",
+                    'additionToAddress2' => "App. 235"
+                )
+            ),
+            array(
+                "Kirchengasse 7, 1. Stock Zi.Nr. 4",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Kirchengasse",
+                    'houseNumber'        => "7",
+                    'additionToAddress2' => "1. Stock Zi.Nr. 4"
+                )
+            ),
+            array(
                 "Wiesentcenter, Bayreuther Str. 108, 2. Stock",
                 array(
                     'additionToAddress1' => "Wiesentcenter",
                     'streetName'         => "Bayreuther Str.",
                     'houseNumber'        => "108",
                     'additionToAddress2' => "2. Stock"
+                )
+            ),
+            array(
+                "244W 300N #101",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "W 300N",
+                    'houseNumber'        => "244",
+                    'additionToAddress2' => "#101"
+                )
+            ),
+            array(
+                "Am Stein VIII",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Am Stein",
+                    'houseNumber'        => "VIII",
+                    'additionToAddress2' => ""
+                )
+            ),
+            array(
+                "Corso XXII Marzo 69",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Corso XXII Marzo",
+                    'houseNumber'        => "69",
+                    'additionToAddress2' => ""
+                )
+            ),
+            array(
+                "Frauenplatz 14 A",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Frauenplatz",
+                    'houseNumber'        => "14 A",
+                    'additionToAddress2' => ""
+                )
+            ),
+            array(
+                "Mannerheimintie 13A2",
+                array(
+                    'additionToAddress1' => "",
+                    'streetName'         => "Mannerheimintie",
+                    'houseNumber'        => "13A2",
+                    'additionToAddress2' => ""
                 )
             ),
             array(
