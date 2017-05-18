@@ -79,6 +79,8 @@ You can also run the tests via [PHPUnit](https://phpunit.de/) from the command l
 $ phpunit
 ```
 
+If you don't have PHPUnit installed globally, run `composer install` first.
+
 ## Further Information
 The need for this functionality came up when we noticed that [Shopware 5](https://github.com/shopware/shopware) does not contain individual fields for the street name
 and the house number anymore. Nevertheless, we needed to have these separated for our [DHL Adapter](http://store.shopware.com/viison00656/dhl-adapter.html),
