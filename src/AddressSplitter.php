@@ -24,7 +24,7 @@ class AddressSplitter
                #########################################################################
                (?:(?P<A_Addition_to_address_1>.*?),\s*)? # Addition to address 1
            (?:No\.\s*)?
-               (?P<A_House_number>\pN+[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # House number
+               (?P<A_House_number>\pN+[a-zA-Z]{0,2}(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # House number
            \s*,?\s*
                (?P<A_Street_name>(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?<!\s)) # Street name
            \s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
@@ -36,7 +36,7 @@ class AddressSplitter
                (?:(?P<B_Addition_to_address_1>.*?),\s*(?=.*[,\/]))? # Addition to address 1
                (?!\s*No\.)(?P<B_Street_name>[^0-9# ]\s*\S(?:[^,#](?!\b\pN+\s))*?(?<!\s)) # Street name
            \s*[\/,]?\s*(?:\sNo[.:])?\s*
-               (?P<B_House_number>\pN+\s*-?[a-zA-Z]?(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|
+               (?P<B_House_number>\pN+\s*-?[a-zA-Z]{0,2}(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|
                [IVXLCDM]+(?!.*\b\pN+\b))(?<!\s) # House number
            \s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
                (?P<B_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
