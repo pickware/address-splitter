@@ -18,7 +18,7 @@ The AddressSplittingService only contains one static function `splitAddress` tha
 The function expects one parameter, which is the address line. The function returns an associative array with the
 keys `additionToAddress1`, `streetName`, `houseNumber` and `additionToAddress2`. `additionToAddress1` and `additionToAddress2`
 contain information given in front of or after the street name & house number, respectively.
- 
+
 ## Example
 You can use the address splitting service as follows:
 
@@ -45,7 +45,7 @@ array(4) {
 We try to support all address formats used world-wide. E.g., the address splitter will work no matter if the house number
 is given in front of or after the street name.
 
-Here is a number of examples of addresses and how their splitted representation looks like: 
+Here is a number of examples of addresses and how their splitted representation looks like:
 
 | Address line                                | additionToAddress1 |  streetName            | houseNumber | additionToAddress2 |
 |---------------------------------------------|--------------------|------------------------|-------------|--------------------|
