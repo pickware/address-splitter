@@ -17,31 +17,54 @@ class AddressSplitter
     public static function splitAddress($address)
     {
         $regex = '
-           /\A\s*
-           (?: #########################################################################
-               # Option A: [<Addition to address 1>] <House number> <Street name>      #
-               # [<Addition to address 2>]                                             #
-               #########################################################################
-               (?:(?P<A_Addition_to_address_1>.*?),\s*)? # Addition to address 1
-           (?:No\.\s*)?
-               (?P<A_House_number>\pN+[a-zA-Z]{0,2}(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # House number
-           \s*,?\s*
-               (?P<A_Street_name>(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?<!\s)) # Street name
-           \s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
-               (?P<A_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
-           |   #########################################################################
-               # Option B: [<Addition to address 1>] <Street name> <House number>      #
-               # [<Addition to address 2>]                                             #
-               #########################################################################
-               (?:(?P<B_Addition_to_address_1>.*?),\s*(?=.*[,\/]))? # Addition to address 1
-               (?!\s*No\.)(?P<B_Street_name>[^0-9# ]\s*\S(?:[^,#](?!\b\pN+\s))*?(?<!\s)) # Street name
-           \s*[\/,]?\s*(?:\sNo[.:])?\s*
-               (?P<B_House_number>\pN+\s*-?[a-zA-Z]{0,2}(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|
-               [IVXLCDM]+(?!.*\b\pN+\b))(?<!\s) # House number
-           \s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
-               (?P<B_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
-           )
-           \s*\Z/xu';
+            /\A\s*
+            (?: #########################################################################
+                # Option A: [<Addition to address 1>] <House number> <Street name>      #
+                # [<Addition to address 2>]                                             #
+                #########################################################################
+                (?:(?P<A_Addition_to_address_1>.*?),\s*)? # Addition to address 1
+            (?:No\.\s*)?
+                (?P<A_House_number_match>
+                     (?P<A_House_number_base>
+                        \pN+
+                     )
+                     (?:
+                        \s*[\-\/\.]?\s*
+                        (?P<A_House_number_extension>(?:[a-zA-Z\pN]){1,2})
+                        \s+
+                     )?
+                )
+            \s*,?\s*
+                (?P<A_Street_name>(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?<!\s)) # Street name
+            \s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
+                (?P<A_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
+            |   #########################################################################
+                # Option B: [<Addition to address 1>] <Street name> <House number>      #
+                # [<Addition to address 2>]                                             #
+                #########################################################################
+                (?:(?P<B_Addition_to_address_1>.*?),\s*(?=.*[,\/]))? # Addition to address 1
+                (?!\s*No\.)(?P<B_Street_name>[^0-9# ]\s*\S(?:[^,#](?!\b\pN+\s))*?(?<!\s)) # Street name
+            \s*[\/,]?\s*(?:\sNo[.:])?\s*
+                (?P<B_House_number_match>
+                     (?P<B_House_number_base>
+                        \pN+
+                     )
+                     (?:
+                        (?:
+                            \s*[\-\/\.]?\s*
+                            (?P<B_House_number_extension>(?:[a-zA-Z\pN]){1,2})
+                            \s*
+                        )?
+                        |
+                        (?<!\s)
+                     )
+                ) # House number
+                (?:
+                    (?:\s*[-,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
+                    (?P<B_Addition_to_address_2>(?!\s).*?)
+                )?
+            )
+            \s*\Z/xu';
 
         $result = preg_match($regex, $address, $matches);
         if ($result === 0) {
@@ -54,14 +77,22 @@ class AddressSplitter
             return array(
                 'additionToAddress1' => $matches['A_Addition_to_address_1'],
                 'streetName' => $matches['A_Street_name'],
-                'houseNumber' => $matches['A_House_number'],
+                'houseNumber' => $matches['A_House_number_match'],
+                'houseNumberParts' => array(
+                    'base' => $matches['A_House_number_base'],
+                    'extension' => isset($matches['A_House_number_extension']) ? $matches['A_House_number_extension'] : ''
+                ),
                 'additionToAddress2' => (isset($matches['A_Addition_to_address_2'])) ? $matches['A_Addition_to_address_2'] : ''
             );
         } else {
             return array(
                 'additionToAddress1' => $matches['B_Addition_to_address_1'],
                 'streetName' => $matches['B_Street_name'],
-                'houseNumber' => $matches['B_House_number'],
+                'houseNumber' => $matches['B_House_number_match'],
+                'houseNumberParts' => array(
+                    'base' => $matches['B_House_number_base'],
+                    'extension' => isset($matches['B_House_number_extension']) ? $matches['B_House_number_extension'] : ''
+                ),
                 'additionToAddress2' => isset($matches['B_Addition_to_address_2']) ? $matches['B_Addition_to_address_2'] : ''
             );
         }
