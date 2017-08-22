@@ -8,8 +8,11 @@
             "email": "contact@viison.com"
         }
     ],
+    "require": {
+        "php": ">=5.3.2"
+    },
     "require-dev": {
-        "phpunit/phpunit": "~5.6||~6.1"
+        "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": { "VIISON\\AddressSplitter\\": "src/" }
