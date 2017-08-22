@@ -71,7 +71,7 @@ class AddressSplitter
 
         $result = preg_match($regex, $address, $matches);
         if ($result === 0) {
-            throw new \InvalidArgumentException(sprintf('Address \'%s\' could not be splitted into street name and house number', $address));
+            throw new SplittingException(SplittingException::CODE_ADDRESS_SPLITTING_ERROR, $address);
         } elseif ($result === false) {
             throw new \RuntimeException(sprintf('Error occurred while trying to split address \'%s\'', $address));
         }
@@ -126,7 +126,7 @@ class AddressSplitter
         $result = preg_match($regex, $houseNumber, $matches);
 
         if ($result === 0) {
-            throw new \InvalidArgumentException(sprintf('House number \'%s\' could not be splitted into base and extension', $houseNumber));
+            throw new SplittingException(SplittingException::CODE_HOUSE_NUMBER_SPLITTING_ERROR, $houseNumber);
         } elseif ($result === false) {
             throw new \RuntimeException(sprintf('Error occurred while trying to house number \'%s\'', $houseNumber));
         }
