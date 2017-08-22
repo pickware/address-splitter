@@ -1,6 +1,6 @@
 # AddressSplitting
 
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Build Status](https://img.shields.io/travis/VIISON/AddressSplitting.svg?style=flat-square)](https://travis-ci.org/VIISON/AddressSplitting) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Tries to split an address line into street name, house number and other additional information like building,
 apartment information etc.
