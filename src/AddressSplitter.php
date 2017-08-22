@@ -1,9 +1,11 @@
 <?php
-
 namespace VIISON\AddressSplitter;
 
 use VIISON\AddressSplitter\Exceptions\SplittingException;
 
+/**
+ * @copyright Copyright (c) 2017 VIISON GmbH
+ */
 class AddressSplitter
 {
     /**

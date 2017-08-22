@@ -3,6 +3,9 @@ namespace VIISON\AddressSplitter\Test;
 
 use VIISON\AddressSplitter\AddressSplitter;
 
+/**
+ * @copyright Copyright (c) 2017 VIISON GmbH
+ */
 class AddressSplitterTest extends \PHPUnit_Framework_TestCase
 {
     /**
