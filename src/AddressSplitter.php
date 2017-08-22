@@ -2,6 +2,8 @@
 
 namespace VIISON\AddressSplitter;
 
+use VIISON\AddressSplitter\Exceptions\SplittingException;
+
 class AddressSplitter
 {
     /**
@@ -13,6 +15,7 @@ class AddressSplitter
      *
      * @param string $address
      * @return array
+     * @throws SplittingException
      */
     public static function splitAddress($address)
     {
@@ -96,5 +99,41 @@ class AddressSplitter
                 'additionToAddress2' => isset($matches['B_Addition_to_address_2']) ? $matches['B_Addition_to_address_2'] : ''
             );
         }
+    }
+
+    /**
+     * @param string $houseNumber A house number string to split in base and extension
+     * @return array
+     * @throws SplittingException
+     */
+    public static function splitHouseNumber($houseNumber)
+    {
+        $regex =
+            '/
+            \A\s* # Trim white spaces at the beginning
+            (?:[nN][oO][\.:]?\s*)? # Trim sth. like No.
+            (?:\#\s*)? # Trim #
+            (?<House_number_base>
+                [\pN]+ # House Number base (only the number)
+            )
+            \s*[\/\-\.]?\s* # Separator (optional)
+            (?<House_number_extension> # House number extension (optional)
+                [a-zA-Z\pN]* # Here we allow more than only 2 characters als house number extension
+            ) 
+            \s*\Z # Trim white spaces at the end
+            /xu'; // Option (u)nicode and e(x)tended syntax
+
+        $result = preg_match($regex, $houseNumber, $matches);
+
+        if ($result === 0) {
+            throw new \InvalidArgumentException(sprintf('House number \'%s\' could not be splitted into base and extension', $houseNumber));
+        } elseif ($result === false) {
+            throw new \RuntimeException(sprintf('Error occurred while trying to house number \'%s\'', $houseNumber));
+        }
+
+        return array(
+            'base' => $matches['House_number_base'],
+            'extension' => $matches['House_number_extension']
+        );
     }
 }
