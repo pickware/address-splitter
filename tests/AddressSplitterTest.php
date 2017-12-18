@@ -403,6 +403,19 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'additionToAddress2' => 'WG2'
                 )
             ),
+            array(
+                'Reitelbauerstr. 7 1/2',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Reitelbauerstr.',
+                    'houseNumber'        => '7 1/2',
+                    'houseNumberParts'   => array(
+                        'base' => '7 1/2',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            )
         );
     }
 
