@@ -31,7 +31,7 @@ class AddressSplitter
             (?:No\.\s*)?
                 (?P<A_House_number_match>
                      (?P<A_House_number_base>
-                        \pN+(\s+\d\/\d)?
+                        \pN+(\s+\d+\/\d+)?
                      )
                      (?:
                         \s*[\-\/\.]?\s*
@@ -52,7 +52,7 @@ class AddressSplitter
             \s*[\/,]?\s*(?:\sNo[.:])?\s*
                 (?P<B_House_number_match>
                      (?P<B_House_number_base>
-                        \pN+(\s+\d\/\d)?
+                        \pN+(\s+\d+\/\d+)?
                      )
                      (?:
                         (?:
