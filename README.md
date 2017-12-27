@@ -74,6 +74,7 @@ Here is a number of examples of addresses and how their splitted representation 
 |Kerkstraat 13-HS                             |                    |Kerkstraat              |13-HS        | 13   | HS        |                    |
 |Poststr. 15-WG2                              |                    |Poststr.                |15           | 15   |           |                    |
 |Hollandweg1A                                 |                    |Hollandweg              |1A           | 1    | A         |                    |
+|Poststr. 2 1/2                               |                    |Poststr.                |2 1/2        | 2 1/2|           |                    |
 
 
 ## Unit Tests
