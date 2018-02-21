@@ -52,17 +52,15 @@ class AddressSplitter
             \s*[\/,]?\s*(?:\sNo[.:])?\s*
                 (?P<B_House_number_match>
                      (?P<B_House_number_base>
-                        \pN+(\s+\d+\/\d+)?
+                        \pN+
                      )
                      (?:
-                        (?:
-                            \s*[\-\/\.]?\s*
-                            (?P<B_House_number_extension>(?:[a-zA-Z\pN]){1,2})
-                            \s*
-                        )?
-                        |
-                        (?<!\s)
-                     )
+                        \s*[\-\/]?\s*
+                        (?P<B_House_number_extension>
+                            (?:[\pL\pN]+)
+                            (?:\s*[\-\/]\s*[\pL\pN])*
+                        )
+                     )?
                 ) # House number
                 (?:
                     (?:\s*[-,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
@@ -120,7 +118,7 @@ class AddressSplitter
             )
             \s*[\/\-\.]?\s* # Separator (optional)
             (?<House_number_extension> # House number extension (optional)
-                [a-zA-Z\pN]* # Here we allow more than only 2 characters als house number extension
+                .*? # Here we allow every character. Everything after the separator is interpreted as extension
             ) 
             \s*\Z # Trim white spaces at the end
             /xu'; // Option (u)nicode and e(x)tended syntax

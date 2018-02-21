@@ -81,6 +81,13 @@ class HouseNumberSplitterTest extends \PHPUnit_Framework_TestCase
                     'extension' => 'B3'
                 )
             ),
+            array(
+                '13/15/4/5',
+                array(
+                    'base' => '13',
+                    'extension' => '15/4/5'
+                )
+            ),
         );
     }
 }

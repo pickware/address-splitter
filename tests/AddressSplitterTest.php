@@ -395,12 +395,12 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                 array(
                     'additionToAddress1' => '',
                     'streetName'         => 'Poststr.',
-                    'houseNumber'        => '15',
+                    'houseNumber'        => '15-WG2',
                     'houseNumberParts'   => array(
                         'base' => '15',
-                        'extension' => ''
+                        'extension' => 'WG2'
                     ),
-                    'additionToAddress2' => 'WG2'
+                    'additionToAddress2' => ''
                 )
             ),
             array(
@@ -410,8 +410,47 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'streetName'         => 'Reitelbauerstr.',
                     'houseNumber'        => '7 1/2',
                     'houseNumberParts'   => array(
-                        'base' => '7 1/2',
-                        'extension' => ''
+                        'base' => '7',
+                        'extension' => '1/2'
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Schegargasse 13-15/8/6',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Schegargasse',
+                    'houseNumber'        => '13-15/8/6',
+                    'houseNumberParts'   => array(
+                        'base' => '13',
+                        'extension' => '15/8/6'
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Breitenstr. 13/15/8/6',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Breitenstr.',
+                    'houseNumber'        => '13/15/8/6',
+                    'houseNumberParts'   => array(
+                        'base' => '13',
+                        'extension' => '15/8/6'
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Österreicher Weg 12A/8/6',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Österreicher Weg',
+                    'houseNumber'        => '12A/8/6',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => 'A/8/6'
                     ),
                     'additionToAddress2' => ''
                 )
