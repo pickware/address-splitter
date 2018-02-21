@@ -454,6 +454,19 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     ),
                     'additionToAddress2' => ''
                 )
+            ),
+            array(
+                'Karlstr. 1 c/o Breitner',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Karlstr.',
+                    'houseNumber'        => '1',
+                    'houseNumberParts'   => array(
+                        'base' => '1',
+                        'extension' => ' '
+                    ),
+                    'additionToAddress2' => 'c/o Breitner'
+                )
             )
         );
     }
