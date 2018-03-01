@@ -463,11 +463,63 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'houseNumber'        => '1',
                     'houseNumberParts'   => array(
                         'base' => '1',
-                        'extension' => ' '
+                        'extension' => ''
                     ),
                     'additionToAddress2' => 'c/o Breitner'
                 )
-            )
+            ),
+            array(
+                'Alan-Turing-Straße 12A/8/6 c/o Victory',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Alan-Turing-Straße',
+                    'houseNumber'        => '12A/8/6',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => 'A/8/6'
+                    ),
+                    'additionToAddress2' => 'c/o Victory'
+                )
+            ),
+            array(
+                'Grace Hopper Av. 12c/o3',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Grace Hopper Av.',
+                    'houseNumber'        => '12c/o3',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => 'c/o3'
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Katherine Johnson Street 12c/o3 c/o Dorothy Vaughan',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Katherine Johnson Street',
+                    'houseNumber'        => '12c/o3',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => 'c/o3'
+                    ),
+                    'additionToAddress2' => 'c/o Dorothy Vaughan'
+                )
+            ),
+            array(
+                'Mary Jackson Avenue 1921/Apr ℅ West Area Computing',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Mary Jackson Avenue',
+                    'houseNumber'        => '1921/Apr',
+                    'houseNumberParts'   => array(
+                        'base' => '1921',
+                        'extension' => 'Apr'
+                    ),
+                    'additionToAddress2' => '℅ West Area Computing'
+                )
+            ),
         );
     }
 
