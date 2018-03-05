@@ -21,6 +21,25 @@ class AddressSplitter
      */
     public static function splitAddress($address)
     {
+        /* Matching this group signifies the following text is part of
+         * additionToAddress2. */
+        $addition2Introducers = '(?:
+            \s+ [Cc] \s* \/ \s* [Oo] \s
+            | ℅
+            | \s+ care \s+ of \s+
+
+            # German, Swiss, Austrian
+            | \s+ (?: p|p.\s*|per\s+ ) (?: A|A.|Adr.|(?<=\s)Adresse ) \s
+            | \s+ p. \s* A. \s
+            | \s+ (?: z | z.\s* | zu\s+ ) (?: Hd|Hd.|(?<=\s)Händen|(?<=\s)Haenden|(?<=\s)Handen) \s+
+
+            ## o. V. i. A. = oder Vertreter im Amt
+            | \s+ (?: o | o.\s* | oder\s+ )
+                (?: V | V.\s* | (?<=\s)Vertreter\s+ )
+                (?: i | i.\s* | (?<=\s)im\s+ )
+                (?: A | A.\s* | (?<=\s)Amt\s+ )
+        )';
+
         $regex = '
             /\A\s*
             (?: #########################################################################
@@ -52,17 +71,33 @@ class AddressSplitter
             \s*[\/,]?\s*(?:\sNo[.:])?\s*
                 (?P<B_House_number_match>
                      (?P<B_House_number_base>
-                        \pN+(\s+\d+\/\d+)?
+                        \pN+
                      )
                      (?:
-                        (?:
-                            \s*[\-\/\.]?\s*
-                            (?P<B_House_number_extension>(?:[a-zA-Z\pN]){1,2})
-                            \s*
-                        )?
-                        |
-                        (?<!\s)
-                     )
+                        # Match house numbers that are (optionally) amended
+                        # by a dash (e.g., 12-13) or slash (e.g., 12\/A):
+                        (?: \s*[\-\/]\s* )*
+                        (?P<B_House_number_extension>
+                            (?:
+                                # Do not match "care-of"-like additions as
+                                # house numbers:
+                                (?!' . $addition2Introducers .')
+                                \s*[\pL\pN]+
+                            )
+                            # Match any further slash- or dash-based house
+                            # number extensions:
+                            (?:
+                                # Do not match "care-of"-like additions as
+                                # house numbers:
+                                (?!' . $addition2Introducers .')
+                                # Match any (optionally space-separated)
+                                # additionals parts of house numbers after
+                                # slashes or dashes.
+                                \s* [\-\/] \s*
+                                [\pL\pN]+
+                            )*
+                        )
+                     )?
                 ) # House number
                 (?:
                     (?:\s*[-,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
@@ -85,7 +120,7 @@ class AddressSplitter
                 'houseNumber' => $matches['A_House_number_match'],
                 'houseNumberParts' => array(
                     'base' => $matches['A_House_number_base'],
-                    'extension' => isset($matches['A_House_number_extension']) ? $matches['A_House_number_extension'] : ''
+                    'extension' => isset($matches['A_House_number_extension']) ? trim($matches['A_House_number_extension']) : ''
                 ),
                 'additionToAddress2' => (isset($matches['A_Addition_to_address_2'])) ? $matches['A_Addition_to_address_2'] : ''
             );
@@ -96,7 +131,7 @@ class AddressSplitter
                 'houseNumber' => $matches['B_House_number_match'],
                 'houseNumberParts' => array(
                     'base' => $matches['B_House_number_base'],
-                    'extension' => isset($matches['B_House_number_extension']) ? $matches['B_House_number_extension'] : ''
+                    'extension' => isset($matches['B_House_number_extension']) ? trim($matches['B_House_number_extension']) : ''
                 ),
                 'additionToAddress2' => isset($matches['B_Addition_to_address_2']) ? $matches['B_Addition_to_address_2'] : ''
             );
@@ -120,7 +155,7 @@ class AddressSplitter
             )
             \s*[\/\-\.]?\s* # Separator (optional)
             (?<House_number_extension> # House number extension (optional)
-                [a-zA-Z\pN]* # Here we allow more than only 2 characters als house number extension
+                .*? # Here we allow every character. Everything after the separator is interpreted as extension
             ) 
             \s*\Z # Trim white spaces at the end
             /xu'; // Option (u)nicode and e(x)tended syntax
