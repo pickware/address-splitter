@@ -597,6 +597,32 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     ),
                     'additionToAddress2' => 'LVL3C Zimmer 12'
                 )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 B 8. Stock App. C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3 B',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => 'B'
+                    ),
+                    'additionToAddress2' => '8. Stock App. C'
+                )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 B 8th Floor App. C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3 B',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => 'B'
+                    ),
+                    'additionToAddress2' => '8th Floor App. C'
+                )
             )
         );
     }

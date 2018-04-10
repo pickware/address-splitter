@@ -54,6 +54,21 @@ class AddressSplitter
             | \s+ (?: WG | W\.G\. | WG\. | Wohngemeinschaft ) ($ | \s)
             | \s+ (?: [Aa]partment | APT \.? | Apt \.? ) \s
             | \s+ (?: [Ff]lat ) \s
+            | (?: # Numeric-based location specifiers (e.g., "3. Stock"):
+                \s+
+                (?:
+                    [\p{N}]+ # A number, …
+                    (?i: st | nd | rd | th)? # …, optionally followed by an English number suffix
+                    \.? # …, followed by an optional dot,
+                    \s* # …, followed by optional spacing
+                )?
+                (?: # Specifying category:
+                    (?i: Stock | Stockwerk)
+                    | App \.? | Apt \.? | (?i: Appartment | Apartment)
+                )
+                # At the end of the string or followed by a space
+                (?: $ | \s)
+            )
             | (?:
                 \s+ (?:
                     # English language stop words wrt location from source [1]
