@@ -520,6 +520,110 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'additionToAddress2' => '℅ West Area Computing'
                 )
             ),
+            array(
+                'Hauptstraße 27 Haus 1',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Hauptstraße',
+                    'houseNumber'        => '27',
+                    'houseNumberParts'   => array(
+                        'base' => '27',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'Haus 1'
+                )
+            ),
+            array(
+                'Rosentiefe 13 A Skulptur 5',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Rosentiefe',
+                    'houseNumber'        => '13 A',
+                    'houseNumberParts'   => array(
+                        'base' => '13',
+                        'extension' => 'A'
+                    ),
+                    'additionToAddress2' => 'Skulptur 5'
+                )
+            ),
+            array(
+                'Torwolds Road 123 APT 3',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Torwolds Road',
+                    'houseNumber'        => '123',
+                    'houseNumberParts'   => array(
+                        'base' => '123',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'APT 3'
+                )
+            ),
+            array(
+                'Denis Ritchie Road 3 Building C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Denis Ritchie Road',
+                    'houseNumber'        => '3',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'Building C'
+                )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 LVL3C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'LVL3C'
+                )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 LVL3C Zimmer 12',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'LVL3C Zimmer 12'
+                )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 B 8. Stock App. C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3 B',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => 'B'
+                    ),
+                    'additionToAddress2' => '8. Stock App. C'
+                )
+            ),
+            array(
+                'Brian-Kernighan-Straße 3 B 8th Floor App. C',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Brian-Kernighan-Straße',
+                    'houseNumber'        => '3 B',
+                    'houseNumberParts'   => array(
+                        'base' => '3',
+                        'extension' => 'B'
+                    ),
+                    'additionToAddress2' => '8th Floor App. C'
+                )
+            )
         );
     }
 

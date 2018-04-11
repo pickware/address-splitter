@@ -22,8 +22,16 @@ class AddressSplitter
     public static function splitAddress($address)
     {
         /* Matching this group signifies the following text is part of
-         * additionToAddress2. */
+         * additionToAddress2.
+         *
+         * See [1] for some of the English language stop words and abbreviations.
+         *
+         * [1] <https://web.archive.org/web/20180410130330/http://maf.directory/zp4/abbrev.html>
+         */
         $addition2Introducers = '(?:
+
+            # {{{ Additions relating to who (a natural person) is addressed
+
             \s+ [Cc] \s* \/ \s* [Oo] \s
             | ℅
             | \s+ care \s+ of \s+
@@ -38,6 +46,106 @@ class AddressSplitter
                 (?: V | V.\s* | (?<=\s)Vertreter\s+ )
                 (?: i | i.\s* | (?<=\s)im\s+ )
                 (?: A | A.\s* | (?<=\s)Amt\s+ )
+
+            # }}}
+            # {{{ Additions which further specify more precisely the location
+
+            | \s+ (?: Haus ) \s
+            | \s+ (?: WG | W\.G\. | WG\. | Wohngemeinschaft ) ($ | \s)
+            | \s+ (?: [Aa]partment | APT \.? | Apt \.? ) \s
+            | \s+ (?: [Ff]lat ) \s
+            | (?: # Numeric-based location specifiers (e.g., "3. Stock"):
+                \s+
+                (?:
+                    [\p{N}]+ # A number, …
+                    (?i: st | nd | rd | th)? # …, optionally followed by an English number suffix
+                    \.? # …, followed by an optional dot,
+                    \s* # …, followed by optional spacing
+                )?
+                (?: # Specifying category:
+                    (?i: Stock | Stockwerk)
+                    | App \.? | Apt \.? | (?i: Appartment | Apartment)
+                )
+                # At the end of the string or followed by a space
+                (?: $ | \s)
+            )
+            | (?:
+                \s+ (?:
+                    # English language stop words wrt location from source [1]
+                    # (extracted only those which may not be _exclusively_ part of
+                    # street names):
+                    | ANX \.? | (?i: ANNEX)
+                    | APT \.? | (?i: APARTMENT)
+                    | ARC \.? | (?i: ARCADE)
+                    | AVE \.? | (?i: AVENUE)
+                    | BSMT \.? | (?i: BASEMENT)
+                    | BLDG \.? | (?i: BUILDING)
+                    | CP \.? | (?i: CAMP)
+                    | COR \.? | (?i: CORNER)
+                    | CORS \.? | (?i: CORNERS)
+                    | CT \.? | (?i: COURT)
+                    | CTS \.? | (?i: COURTS)
+                    | DEPT \.? | (?i: DEPARTMENT)
+                    | DV \.? | (?i: DIVIDE)
+                    | EST \.? | (?i: ESTATE)
+                    | EXT \.? | (?i: EXTENSION)
+                    | FRY \.? | (?i: FERRY)
+                    | FLD \.? | (?i: FIELD)
+                    | FLDS \.? | (?i: FIELDS)
+                    | FLT \.? | (?i: FLAT)
+                    | FL \.? | (?i: FLOOR)
+                    | FRNT \.? | (?i: FRONT)
+                    | GDNS \.? | (?i: GARDEN)
+                    | GDNS \.? | (?i: GARDENS)
+                    | GTWY \.? | (?i: GATEWAY)
+                    | GRN \.? | (?i: GREEN)
+                    | GRV \.? | (?i: GROVE)
+                    | HNGR \.? | (?i: HANGER)
+                    | HBR \.? | (?i: HARBOR)
+                    | HVN \.? | (?i: HAVEN)
+                    | KY \.? | (?i: KEY)
+                    | LBBY \.? | (?i: LOBBY)
+                    | LCKS \.? | (?i: LOCK)
+                    | LCKS \.? | (?i: LOCKS)
+                    | LDG \.? | (?i: LODGE)
+                    | MNR \.? | (?i: MANOR)
+                    | OFC \.? | (?i: OFFICE)
+                    | PKWY \.? | (?i: PARKWAY)
+                    | PH \.? | (?i: PENTHOUSE)
+                    | PRT \.? | (?i: PORT)
+                    | RADL \.? | (?i: RADIAL)
+                    | RM \.? | (?i: ROOM)
+                    | SPC \.? | (?i: SPACE)
+                    | SQ \.? | (?i: SQUARE)
+                    | STA \.? | (?i: STATION)
+                    | STE \.? | (?i: SUITE)
+                    | TER \.? | (?i: TERRACE)
+                    | TRAK \.? | (?i: TRACK)
+                    | TRL \.? | (?i: TRAIL)
+                    | TRLR \.? | (?i: TRAILER)
+                    | TUNL \.? | (?i: TUNNEL)
+                    | VW \.? | (?i: VIEW)
+                    | VIS \.? | (?i: VISTA)
+
+                    # Custom custom additions:
+                    | (?i: Story | Storey)
+                    | LVL \.? | (?i: Level)
+                )
+                # May optionally be followed directly by a number+letter
+                # combination (e.g., "LVL3C"):
+                (?: [\p{N}]+[\p{L}]* )?
+                # Occurs at the end of the string or followed by a space:
+                ($ | \s)
+            )
+
+            # Heuristic to match location specifiers. These must not be
+            # conflated with house number extensions as in "12 AB". Hence
+            # our heuristic is at least 3 letters with the first letter being
+            # spelled as a capital. E.g., it would match "Haus", "Gebäude" or
+            # "Arbeitspl.", but not "AAB".
+            | \s+ ( [\p{Lu}\p{Lt}] [\p{Ll}\p{Lo}]{2,}  \.? ) ($ | \s)
+
+            # }}}
         )';
 
         $regex = '
