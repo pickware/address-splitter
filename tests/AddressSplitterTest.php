@@ -623,7 +623,59 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     ),
                     'additionToAddress2' => '8th Floor App. C'
                 )
-            )
+            ),
+            array(
+                'Beispielstraße, Nr 12',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Beispielstraße',
+                    'houseNumber'        => '12',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Beispielstraße Nr. 12',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Beispielstraße',
+                    'houseNumber'        => '12',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'No. 10 Drowning Street',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Drowning Street',
+                    'houseNumber'        => '10',
+                    'houseNumberParts'   => array(
+                        'base' => '10',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Beispielstraße Nr 12 WG Nr 13',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Beispielstraße',
+                    'houseNumber'        => '12',
+                    'houseNumberParts'   => array(
+                        'base' => '12',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'WG Nr 13'
+                )
+            ),
         );
     }
 
