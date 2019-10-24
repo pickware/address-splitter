@@ -793,6 +793,19 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'additionToAddress2' => 'Hausnummer 23'
                 )
             ),
+            array(
+                'Steinberger Straße 7E4dK6',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Steinberger Straße',
+                    'houseNumber'        => '7E4dK6',
+                    'houseNumberParts'   => array(
+                        'base' => '7',
+                        'extension' => 'E4dK6'
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
         );
     }
 
