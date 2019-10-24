@@ -676,6 +676,123 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'additionToAddress2' => 'WG Nr 13'
                 )
             ),
+            array(
+                'Norkshäuschen 8',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Norkshäuschen',
+                    'houseNumber'        => '8',
+                    'houseNumberParts'   => array(
+                        'base' => '8',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'No Street 8',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'No Street',
+                    'houseNumber'        => '8',
+                    'houseNumberParts'   => array(
+                        'base' => '8',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'No Street No 8',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'No Street',
+                    'houseNumber'        => '8',
+                    'houseNumberParts'   => array(
+                        'base' => '8',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Acme Corporation, No Street No 8 c/o Chief Happiness Officer',
+                array(
+                    'additionToAddress1' => 'Acme Corporation',
+                    'streetName'         => 'No Street',
+                    'houseNumber'        => '8',
+                    'houseNumberParts'   => array(
+                        'base' => '8',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'c/o Chief Happiness Officer'
+                )
+            ),
+            array(
+                'Acme Corporation, No 800 North Street',
+                array(
+                    'additionToAddress1' => 'Acme Corporation',
+                    'streetName'         => 'North Street',
+                    'houseNumber'        => '800',
+                    'houseNumberParts'   => array(
+                        'base' => '800',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Acme Corporation, No 800 Number Street',
+                array(
+                    'additionToAddress1' => 'Acme Corporation',
+                    'streetName'         => 'Number Street',
+                    'houseNumber'        => '800',
+                    'houseNumberParts'   => array(
+                        'base' => '800',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => ''
+                )
+            ),
+            array(
+                'Wegstraße 25 Hausnummer 23',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Wegstraße',
+                    'houseNumber'        => '25',
+                    'houseNumberParts'   => array(
+                        'base' => '25',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'Hausnummer 23'
+                )
+            ),
+            array(
+                '25 Roadstreet, APT Number 23',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Roadstreet',
+                    'houseNumber'        => '25',
+                    'houseNumberParts'   => array(
+                        'base' => '25',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'APT Number 23'
+                )
+            ),
+            array(
+                '25 Roadstreet, Hausnummer 23',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName'         => 'Roadstreet',
+                    'houseNumber'        => '25',
+                    'houseNumberParts'   => array(
+                        'base' => '25',
+                        'extension' => ''
+                    ),
+                    'additionToAddress2' => 'Hausnummer 23'
+                )
+            ),
         );
     }
 

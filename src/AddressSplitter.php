@@ -49,7 +49,9 @@ class AddressSplitter
      *
      * * assumes each alternative must either be at the start of the string or be preceded by whitespace,
      *
-     * * assumes each alternative to be case insensitive.
+     * * assumes each alternative to be case insensitive,
+     *
+     * * checks that the prefix will be succeeded by a number (following optional spaces).
      *
      * @param array $numberPrefixes a list of regular expressions (assuming 'x' and 'u' flags)
      * @return string a regular expression for an anonymous group matching the alternatives supplied in the argument
@@ -58,7 +60,7 @@ class AddressSplitter
     {
          return self::concatenateRegexAlternatives(array_map(
             function ($numberPrefix) {
-                return '(?: ^ | (?<=\s)) (?i: ' . $numberPrefix . ' )';
+                return '(?: ^ | (?<=\s)) (?i: ' . $numberPrefix . ' (?= \s* \pN+) )';
             },
             $numberPrefixes
         ));
