@@ -806,6 +806,48 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
                     'additionToAddress2' => ''
                 )
             ),
+            array(
+                // Example: Mannheim, Germany
+                'L14 10',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName' => 'L14',
+                    'houseNumber' => '10',
+                    'houseNumberParts' => array(
+                        'base' => '10',
+                        'extension' => '',
+                    ),
+                    'additionToAddress2' => '',
+                ),
+            ),
+            array(
+                // Example: Mannheim, Germany
+                'L1 1',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName' => 'L1',
+                    'houseNumber' => '1',
+                    'houseNumberParts' => array(
+                        'base' => '1',
+                        'extension' => '',
+                    ),
+                    'additionToAddress2' => '',
+                ),
+            ),
+            array(
+                // Example: Mannheim, Germany
+                'L14 1',
+                array(
+                    'additionToAddress1' => '',
+                    'streetName' => 'L14',
+                    'houseNumber' => '1',
+                    'houseNumberParts' => array(
+                        'base' => '1',
+                        'extension' => '',
+                    ),
+                    'additionToAddress2' => '',
+                ),
+            ),
         );
     }
 

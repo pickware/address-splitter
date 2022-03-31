@@ -243,7 +243,23 @@ class AddressSplitter
                 #########################################################################
                 (?:(?P<B_Addition_to_address_1>.*?),\s*(?=.*[,\/]))? # Addition to address 1
                 (?!\s* ' . $houseNumberPrefixes . ')
-                (?P<B_Street_name>[^0-9# ]\s*\S(?:[^,#](?!\b\pN+\s))*?(?<!\s)) # Street name
+                (?P<B_Street_name>
+                    (?:
+                        # Special case for Mannheim, Germany-style ("block") street names with a single letter followed
+                        # by one or more digits.
+                        \pL
+                        \pN+
+                    )
+                    |
+                    (?:
+                        # Any other street name.
+                        [^0-9# ]
+                        \s*
+                        \S
+                        (?:[^,#](?!\b\pN+\s))*?
+                        (?<!\s)
+                    )
+                ) # Street name
             \s*[\/,]?\s*(?:\s ' . $houseNumberPrefixes . ')?\s*
                 (?P<B_House_number_match>
                      (?P<B_House_number_base>
