@@ -1,12 +1,14 @@
 <?php
 namespace VIISON\AddressSplitter\Test;
 
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use VIISON\AddressSplitter\AddressSplitter;
 
 /**
  * @copyright Copyright (c) 2017 VIISON GmbH
  */
-class AddressSplitterTest extends \PHPUnit_Framework_TestCase
+class AddressSplitterTest extends TestCase
 {
     /**
      * @dataProvider validAddressesProvider
@@ -811,12 +813,13 @@ class AddressSplitterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidAddressesProvider
-     * @expectedException \InvalidArgumentException
      *
      * @param string $address
      */
     public function testInvalidAddress($address)
     {
+        $this->expectException(InvalidArgumentException::class);
+
         AddressSplitter::splitAddress($address);
     }
 
