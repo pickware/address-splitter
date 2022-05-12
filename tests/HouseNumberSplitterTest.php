@@ -1,12 +1,13 @@
 <?php
 namespace VIISON\AddressSplitter\Test;
 
+use PHPUnit\Framework\TestCase;
 use VIISON\AddressSplitter\AddressSplitter;
 
 /**
  * @copyright Copyright (c) 2017 VIISON GmbH
  */
-class HouseNumberSplitterTest extends \PHPUnit_Framework_TestCase
+class HouseNumberSplitterTest extends TestCase
 {
     /**
      * @dataProvider validHouseNumberProvider
